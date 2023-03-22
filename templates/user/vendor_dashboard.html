@@ -1,0 +1,114 @@
+{% extends './Base.html' %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../assets/img/favicon/favicon.ico"
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link
+      rel="stylesheet"
+      href="{% static '/assets/vendor/fonts/boxicons.css' %}"
+    />
+
+    <!-- Core CSS -->
+    <link
+      rel="stylesheet"
+      href="{% static '/assets/vendor/css/core.css'%}"
+      class="template-customizer-core-css"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static '/assets/vendor/css/theme-default.css'%}"
+      class="template-customizer-theme-css"
+    />
+
+    <link rel="stylesheet" href="{% static '/assets/vendor/css/demo.css'%}" />
+
+    <!-- Vendors CSS -->
+    <link
+      rel="stylesheet"
+      href="{% static '/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css'%}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{% static '/assets/vendor/libs/apex-charts/apex-charts.css'%}"
+    />
+
+    <!-- Page CSS -->
+  </head>
+
+  <body>
+    {% block content %}
+    <div class="card">
+      <h5 class="card-header">Products</h5>
+      <h5 class="card-header">
+        <a href="{% url 'create_product' %}" class="btn btn-primary">Add Product</a>
+      </h5>
+      <div class="table-responsive text-nowrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Description</th>
+              <th>category</th>
+              <th>subcategory</th>
+              <th>Price</th>
+              <th>Brand</th>
+              {% comment %} <th>Actions</th> {% endcomment %}
+            </tr>
+          </thead>
+          <tbody class="table-border-bottom-0">
+            {% for product in products %}
+            <tr>
+              <td>
+                <i class="fab fa-angular fa-lg text-danger me-3"></i>
+                <strong>{{product.pruduct_name}}</strong>
+              </td>
+              <td>{{product.category}}</td>
+              <td>{{product.subcategory}}</td>
+              <td>{{product.description}}</td>
+              <td>{{product.price}}</td>
+              <td>{{product.brand}}</td>
+              <td><span class="badge bg-label-primary me-1">Active</span></td>
+              <td>
+                <div class="dropdown">
+                  <a class="dropdown-item" href="{% url 'update_product' %}" class="btn btn-secondary"
+                    ><i class="bx bx-edit-alt me-1" ></i> Update</a>
+
+                  <a class="dropdown-item" href="{% url 'delete_product' %}" class="btn btn-danger"
+                    ><i class="bx bx-trash me-1"></i> Delete</a>
+                </div>
+              </td>
+            </tr>
+
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    {% endblock content %} {% comment %}
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        <div class="content-wrapper">
+          <div class="container-xxl flex-grow-1 container-p-y">
+            <h1>ok</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endcomment %}
+  </body>
+</html>
