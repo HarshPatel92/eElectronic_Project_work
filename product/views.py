@@ -24,7 +24,7 @@ class ProductDeleteView(DeleteView):
     model = Product
     def get(self, request, *args, **kwargs):
         return self.delete(request, *args, **kwargs)
-    
+        
     success_url = '/product/product_list/'
     
 class ProductListView(ListView):
