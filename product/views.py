@@ -2,7 +2,9 @@ from django.shortcuts import render
 from django.views.generic import CreateView,UpdateView,DeleteView,ListView,DetailView
 from .forms import *
 from .models import *
-
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from user.decorators import user_required,admin_required,vendor_required
 # Create your views here.
 
 class ProductCreateView(CreateView):

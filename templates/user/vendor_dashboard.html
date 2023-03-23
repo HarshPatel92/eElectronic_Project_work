@@ -85,13 +85,13 @@
               <td>{{product.brand}}</td>
               <td><span class="badge bg-label-primary me-1">Active</span></td>
               <td>
-                <div class="dropdown">
-                  <a class="dropdown-item" href="{% url 'create_product' %}" class="btn btn-secondary"
+                {% comment %} <div class="dropdown">
+                  <a class="dropdown-item" href="" class="btn btn-secondary"
                     ><i class="bx bx-edit-alt me-1" ></i> Update</a>
 
-                  <a class="dropdown-item" href="{% url 'delete_product' %}" class="btn btn-danger"
+                  <a class="dropdown-item" href="#" class="btn btn-danger"
                     ><i class="bx bx-trash me-1"></i> Delete</a>
-                </div>
+                </div> {% endcomment %}
               </td>
             </tr>
 
