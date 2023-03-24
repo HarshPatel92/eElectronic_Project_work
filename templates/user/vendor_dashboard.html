@@ -67,6 +67,7 @@
               <th>subcategory</th>
               <th>Price</th>
               <th>Brand</th>
+              <th>Stock</th>
               {% comment %} <th>Actions</th> {% endcomment %}
             </tr>
           </thead>
@@ -83,7 +84,7 @@
               
               <td>{{product.price}}</td>
               <td>{{product.brand}}</td>
-              <td><span class="badge bg-label-primary me-1">Active</span></td>
+              <td><span class="badge bg-label-primary me-1">Available</span></td>
               <td>
                 {% comment %} <div class="dropdown">
                   <a class="dropdown-item" href="" class="btn btn-secondary"

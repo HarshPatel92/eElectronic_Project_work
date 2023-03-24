@@ -6,6 +6,9 @@ from django.contrib.auth import login
 from django.contrib.auth.views import LoginView,LogoutView
 from django.views.generic import ListView
 from product.models import Product
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from .decorators import user_required,vendor_required,admin_required
 
 class UserRegisterView(CreateView):
     model = User
@@ -62,12 +65,13 @@ class UserLoginView(LoginView):
     def get_redirect_url(self):
         if self.request.user.is_authenticated:
            if self.request.user.is_user:
-            return '/user/user_dashboard'
+            return '/user/user/dashboard'
            elif self.request.user.is_vendor:
             return '/user/vendor/dashboard'
            else:
-            return '/user/admin_dashboard'
-        
+            return '/user/admin/dashboard'
+
+@method_decorator([login_required(login_url='/user/login/'),vendor_required],name='dispatch')       
 class VendorDashboardView(ListView):
     def get(self, request, *args, **kwargs):
         product = Product.objects.all().values()
@@ -78,7 +82,20 @@ class VendorDashboardView(ListView):
 
     template_name = 'user/vendor_dashboard.html'
 
-            
+@method_decorator([login_required(login_url='/user/login/'),admin_required],name='dispatch')
+class AdminDashboardView(ListView):
+
+    template_name = 'user/admin_dashboard.html'
+    
+@method_decorator([login_required(login_url='/user/login/'),user_required],name='dispatch')
+class UserDashboardView(ListView):
+    template_name = 'user/user_dashboard.html'
+    context_object_name = 'user_dashboard'
+    
+    
+    
+    
+       
     
     
     
