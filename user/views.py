@@ -4,7 +4,7 @@ from .models import User
 from .forms import UserRegisterForm,VendorRegisterForm,AdminRegisterForm
 from django.contrib.auth import login
 from django.contrib.auth.views import LoginView,LogoutView
-from django.views.generic import ListView
+from django.views.generic import ListView,TemplateView
 from product.models import Product
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -83,14 +83,14 @@ class VendorDashboardView(ListView):
     template_name = 'user/vendor_dashboard.html'
 
 @method_decorator([login_required(login_url='/user/login/'),admin_required],name='dispatch')
-class AdminDashboardView(ListView):
+class AdminDashboardView(TemplateView):
 
     template_name = 'user/admin_dashboard.html'
     
 @method_decorator([login_required(login_url='/user/login/'),user_required],name='dispatch')
-class UserDashboardView(ListView):
+class UserDashboardView(TemplateView):
     template_name = 'user/user_dashboard.html'
-    context_object_name = 'user_dashboard'
+    
     
     
 

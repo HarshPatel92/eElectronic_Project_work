@@ -25,7 +25,6 @@
                 <th>Product</th>
                 <th>Description</th>
                 <th>category</th>
-                <th>Status</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -39,10 +38,7 @@
                 </td>
                 <td>{{product.description}}</td>
                 <td>{{product.category}}</td>
-                <td>{{product.subcategory}}</td>
-                <td>{{product.price}}</td>
-                <td>{{product.brand}}</td>
-                <td><span class="badge bg-label-primary me-1">Active</span></td>
+                {% comment %} <td><span class="badge bg-label-primary me-1">Active</span></td> {% endcomment %}
                 <td>
                   
                   <div class="dropdown">

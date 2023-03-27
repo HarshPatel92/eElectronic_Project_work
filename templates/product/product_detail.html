@@ -9,32 +9,53 @@
   </head>
   <body>
     {% block content %}
-
+    
     <div class="row">
       <!-- Order Statistics -->
-      <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
+      {% comment %} <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
         <div class="card h-100">
           <div
             class="card-header d-flex align-items-center justify-content-between pb-0"
-          >
-            <div class="card-title mb-0">
-              <h5 class="m-0 me-2">{{product_detail.product_name}}</h5>
-              <small class="text-muted"
-                >{{product_detail.category}}</small
-              >
-            </div>
-            <div class="dropdown">
-              <button
-                class="btn p-0"
-                type="button"
-                id="orederStatistics"
-                data-bs-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <i class="bx bx-dots-vertical-rounded"></i>
-              </button>
-              <div
+          > {% endcomment %}
+      <form method="POST">
+      {% csrf_token %}
+      
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <h3 class="box-title mt-5">Product Details</h3>
+        <div class="table-responsive">
+            <table class="table table-striped table-product">
+                <tbody>
+                    <tr>
+                        <td width="390">Name</td>
+                        <td>{{product_detail.product_name}}</td>
+                    </tr>
+                    <tr>
+                      <td width="390">Description</td>
+                      <td>{{product_detail.description}}</td>
+                    </tr>
+                    <tr>
+                      <td width="390">category</td>
+                      <td>{{product_detail.category}}</td>
+                    </tr>
+                    <tr>
+                      <td width="390">subcategory</td>
+                      <td>{{product_detail.subcategory}}</td>
+                    </tr>
+                    <tr>
+                      <td width="390">Brand</td>
+                      <td>{{product_detail.brand}}</td>
+                    </tr>
+                    <tr>
+                      <td width="390">Price</td>
+                      <td>{{product_detail.price}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      </div>
+
+            </form>
+              {% comment %} <div
                 class="dropdown-menu dropdown-menu-end"
                 aria-labelledby="orederStatistics"
               >
@@ -43,7 +64,7 @@
                 >
                 <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
                 <a class="dropdown-item" href="javascript:void(0);">Share</a>
-              </div>
+              </div> {% endcomment %}
             </div>
           </div>
           <div class="card-body">
@@ -55,7 +76,7 @@
                 START DATE
                 <h2 class="mb-2">{{project_detail.start_date}}</h2>
               </div> {% endcomment %}
-              <div id="orderStatisticsChart" style="min-height: 137.55px">
+              {% comment %} <div id="orderStatisticsChart" style="min-height: 137.55px">
                 <div
                   id="apexchartsabj9gr0i"
                   class="apexcharts-canvas apexchartsabj9gr0i apexcharts-theme-light"
@@ -434,7 +455,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> {% endcomment %}
               <div class="resize-triggers">
                 <div class="expand-trigger">
                   <div style="width: 338px; height: 139px"></div>

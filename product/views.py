@@ -43,6 +43,5 @@ class ProductDetailView(DetailView):
     context_object_name = 'product_detail'
     
     def get(self, request, *args, **kwargs):
-        return render(request,self.template_name)
-    
+        return render(request,self.template_name,{'product_detail':self.get_object()})
     
