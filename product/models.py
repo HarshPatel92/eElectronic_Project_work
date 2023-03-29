@@ -94,6 +94,7 @@ class Product(models.Model):
     description = models.TextField()
     price = models.FloatField()
     
+    
     def __str__(self):
         return self.product_name
     
@@ -102,7 +103,7 @@ class Product(models.Model):
         
 class Vendor_product(models.Model):
     product = models.ForeignKey(Product,on_delete=models.CASCADE)
-    vendor = models.ForeignKey(Vendor_detail,on_delete=models.CASCADE)
+    vendor = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     quantity = models.PositiveIntegerField()
     price = models.FloatField()
     
@@ -158,7 +159,7 @@ class Order_detail(models.Model):
 class Vendor_product_images(models.Model):
     vendor_product = models.ForeignKey(Vendor_product, on_delete=models.CASCADE)
     vendor = models.ForeignKey(User,on_delete=models.CASCADE)
-    image_url = models.ImageField()
+    image_url = models.ImageField(upload_to='images',null=True)
     
     class Meta:
         db_table = 'vendor_product_images'

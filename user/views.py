@@ -60,7 +60,7 @@ class AdminRegisterView(CreateView):
     
 class UserLoginView(LoginView):
     template_name = 'user/login.html'
-    #success_url = '/user/login/'
+    success_url = '/user/login/'
     
     def get_redirect_url(self):
         if self.request.user.is_authenticated:
@@ -90,6 +90,13 @@ class AdminDashboardView(TemplateView):
 @method_decorator([login_required(login_url='/user/login/'),user_required],name='dispatch')
 class UserDashboardView(TemplateView):
     template_name = 'user/user_dashboard.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        products = Product.objects.filter()
+        context['products'] = products
+        return context
     
     
     
