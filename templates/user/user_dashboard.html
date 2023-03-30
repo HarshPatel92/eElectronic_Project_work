@@ -9,30 +9,21 @@
 </head>
 <body>
     {% block content %}
-        <h1> Welcome user to your Dashboard, {{user.username}}</h1>
+        <h1> Welcome to your Dashboard, {{user.username}}</h1>
     {% if products %}
     <form method="POST">
         {% csrf_token %}
-    <h2>Product Details:</h2>
-    
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                {% comment %} <th>Price</th>
-                <th>Description</th> {% endcomment %}
-                <th>View Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for product in products %}
-                <tr>
-                    <td>{{ product.product_name }}</td>
-                    {% comment %} <td>{{ product.price }}</td>
-                    <td>{{ product.description }}</td> {% endcomment %}
-                    <td><a href="{% url 'product_detail' product.id %}">View Details</a>
-                    
-                </tr>
+    <h2>Products</h2>
+    {% for product in products %}
+            <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+              
+                <div class="card-body">
+                  <h5 class="card-title">{{product.product_name}}</h5>
+                  <p class="card-text">{{product.description}}</p>
+                  <a href="#" class="btn btn-primary">Shop Now</a>
+                </div>
+              </div>
             {% endfor %}
   {% else %}
     <p>You haven't added any products yet.</p>

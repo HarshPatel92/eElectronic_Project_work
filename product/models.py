@@ -106,10 +106,9 @@ class Vendor_product(models.Model):
     vendor = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     quantity = models.PositiveIntegerField()
     price = models.FloatField()
-    
+     
     def __str__(self):
-        return self.product
-    
+        return f"{self.product.product_name}"
     class Meta:
         db_table = 'vendor_product'
         
@@ -159,8 +158,10 @@ class Order_detail(models.Model):
 class Vendor_product_images(models.Model):
     vendor_product = models.ForeignKey(Vendor_product, on_delete=models.CASCADE)
     vendor = models.ForeignKey(User,on_delete=models.CASCADE)
-    image_url = models.ImageField(upload_to='images',null=True)
+    image_url = models.ImageField(upload_to='images/',null=True)
     
+    def __str__(self):
+        return f"{self.vendor_product}"
     class Meta:
         db_table = 'vendor_product_images'
         
