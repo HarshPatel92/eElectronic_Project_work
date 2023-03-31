@@ -20,7 +20,7 @@
             <small class="text-muted float-end">Merged input group</small>
           </div>
           <div class="card-body">
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
               <div class="mb-3">
                 <label class="form-label" for="basic-icon-default-fullname"
@@ -52,6 +52,8 @@
                   {{form.brand | as_crispy_field}}
                   {{form.description | as_crispy_field}}
                   {{form.price | as_crispy_field}}
+                  {{form.quantity | as_crispy_field}}
+                  {{form.image}}
 
                   
                   
