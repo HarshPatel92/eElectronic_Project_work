@@ -11,11 +11,11 @@
 </head>
 <body>
     {% block content %}
-        <h1> Welcome to your Dashboard, {{user.username}}</h1>
+        <h4> Welcome to your Dashboard, {{user.username}}</h4>
     {% if products %}
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-    <h2>Products</h2>
+    <h5>Products</h5>
     <div class="container py-5">
     <div class="row">
     {% for product in products %}

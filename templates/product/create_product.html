@@ -1,4 +1,4 @@
-{% extends './Base.html' %} {%load crispy_forms_tags %}
+{% extends './Base.html' %} {% load crispy_forms_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +53,7 @@
                   {{form.description | as_crispy_field}}
                   {{form.price | as_crispy_field}}
                   {{form.quantity | as_crispy_field}}
-                  {{form.image}}
+                  {{form.image | as_crispy_field}}
 
                   
                   

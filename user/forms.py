@@ -10,7 +10,7 @@ class UserRegisterForm(UserCreationForm):
         
     @transaction.atomic
     def save(self):
-        user = super().save(commit=True)
+        user = super().save(commit=False)
         user.is_user = True
         user.save()
         return user
@@ -22,7 +22,7 @@ class VendorRegisterForm(UserCreationForm):
         
     @transaction.atomic
     def save(self):
-        user = super().save(commit=True)
+        user = super().save(commit=False)
         user.is_vendor = True
         user.save()
         return user
@@ -34,7 +34,18 @@ class AdminRegisterForm(UserCreationForm):
         
     @transaction.atomic
     def save(self):
-        user = super().save(commit=True)
+        user = super().save(commit=False)
         user.is_admin = True
+        user.save()
+        return user
+    
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = '__all__'
+        
+    @transaction.atomic
+    def save(self):
+        user = super().save(commit=False)
         user.save()
         return user
