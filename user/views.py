@@ -87,6 +87,14 @@ class UserLogoutView(LogoutView):
 class VendorDashboardView(ListView):
     def get(self, request, *args, **kwargs):
         product = Product.objects.all().values()
+        sort_by = self.request.GET.get('sort_by','product_name')
+        direction = self.request.GET.get('direction','asc')
+        print(".....",sort_by)
+        print(".....",direction)
+        if direction == 'asc':
+            product = product.order_by(sort_by)
+        elif direction == 'desc':
+            product = product.order_by(f'-{sort_by}')
         
         return render(request, 'user/vendor_dashboard.html',{
             'products':product,
@@ -105,7 +113,7 @@ class UserDashboardView(TemplateView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        user = self.request.user
+        #user = self.request.user
         products = Product.objects.filter()
         context['products'] = products
         return context

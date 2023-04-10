@@ -37,6 +37,17 @@ class ProductListView(ListView):
     def get_queryset(self):
         return super().get_queryset()
     
+    def get(self, request, *args, **kwargs):
+        product = Product.objects.filter()
+        sort_by = self.request.GET.get('sort_by','product_name')
+        direction = self.request.GET.get('direction','asc')
+        print("sort by ",sort_by)
+        print("direction is ",direction)
+        if direction == 'asc':
+            product = product.order_by(sort_by)
+        elif direction == 'desc':
+            product = product.order_by(f'-{sort_by}')
+        return render(request, self.template_name,{'product_list':product})
 class ProductDetailView(DetailView):
     model = Product
     template_name = 'product/product_detail.html'
