@@ -86,7 +86,7 @@ class UserLogoutView(LogoutView):
 @method_decorator([login_required(login_url='/user/login/'),vendor_required],name='dispatch')       
 class VendorDashboardView(ListView):
     def get(self, request, *args, **kwargs):
-        product = Product.objects.all().values()
+        product = Product.objects.filter()
         sort_by = self.request.GET.get('sort_by','product_name')
         direction = self.request.GET.get('direction','asc')
         print(".....",sort_by)

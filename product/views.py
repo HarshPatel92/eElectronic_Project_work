@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views.generic import CreateView,UpdateView,DeleteView,ListView,DetailView
 from .forms import *
 from .models import *
@@ -14,7 +14,13 @@ class ProductCreateView(CreateView):
     success_url = '/product/product_list/'
     
     def form_valid(self, form):
-        return super().form_valid(form)
+        response = super().form_valid(form)
+        
+        if self.request.POST.get('saveAndAddAnother'):
+            return redirect('create_product')
+        
+        return response
+        
     
 class ProductUpdateView(UpdateView):
     model = Product
