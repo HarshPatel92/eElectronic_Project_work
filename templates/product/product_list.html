@@ -1,5 +1,5 @@
 {% extends './Base.html' %} {%load crispy_forms_tags %}
-
+{% block content %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,16 +7,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Product List</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     
 </head>
 <body>
+  <script>
+    function showToaster(message) {
+      var toaster = document.getElementById("toaster");
+      toaster.innerHTML = message;
+      toaster.style.display = "block";
+      setTimeout(function () {
+        toaster.style.display = "none";
+      }, 1800); // hide after 5 seconds
+    }
+  </script>
     
-    {% block content %}
     
     <div class="card">
       <div class="d-flex align-items-center justify-content-between">
         <h5 class="card-header">Products</h5>
+        <div id="toaster"></div>
         <a href="{% url 'vendor_dashboard' %}" class="d-flex align-items-center">
           <button type="button" class="btn rounded-pill btn-dark ">Back To {{user.username}} Dashboard</button>
         </a>
@@ -24,6 +37,29 @@
         {% comment %} <h5 class="card-header">
           <a href="{% url 'create_project' %}" class="btn btn-primary">Create</a>
         </h5> {% endcomment %}
+        <script type="text/javascript">
+          function DeleteData(id) {
+            if (confirm("Are you sure you want to delete?")) {
+              $.ajax({
+                type: "GET",
+                url: "/product/delete_product/" + id,
+                success: function (data) {
+                  console.log(data);
+  
+                  //alert("Deleted successfully");
+                  showToaster("Product Deleted successfully");
+                  setTimeout(() => {
+                    location.reload();
+                  }, 5000);
+                },
+                error: function (data) {
+                  console.log(data);
+                  alert("Error");
+                },
+              });
+            }
+          }
+        </script>
         <div class="table-responsive text-nowrap">
           <table class="table">
             <thead>
@@ -92,14 +128,14 @@
                           <span class="bx bx-edit-alt me-1"></span>&nbsp; Update
                         </button>
                       
-                      <a class="dropdown-item" href="{% url 'delete_product' product.id  %}"
-                        > <button type="button" class="btn rounded-pill btn-danger">
+                      <a class="dropdown-item"> <button type="button" onclick="DeleteData({{product.id}})"
+                          class="btn rounded-pill btn-danger">
                           <span class="bx bx-trash me-1"></span>&nbsp; Delete
                         </button>
                       
                       <a class="dropdown-item" href="{% url 'product_detail' product.id  %}"
                       ><button type="button" class="btn rounded-pill btn-info">
-                        <span class="bx bx-select me-1"></span>&nbsp; Details
+                        <i class='bx bxs-detail bx-hover' ></i>&nbsp; Details
                       </button>
                   </div>
                 </td>
@@ -113,7 +149,8 @@
         
       </div>
       
-    {% endblock content %}
+    
         
 </body>
 </html>
+{% endblock content %}

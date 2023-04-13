@@ -15,14 +15,13 @@
         <h4> Welcome to your Dashboard, {{user.username}}</h4>
     {% if products %}
     <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
+    {% csrf_token %}
     <h5>Products</h5>
     <div class="container py-5">
     <div class="row mb-5">
     {% for product in products %}
      <div class="col-md-6 col-lg-4 mb-3">
       <div class="card">
-          {% comment %} <img src="{{ product.image.url }}" class="card-img-top"> {% endcomment %}
               <div class="card-body">
                 <h5 class="card-title">{{product.product_name}}</h5>
                 <h7 class="card-subtitle text-muted">{{product.description}}</h7>
