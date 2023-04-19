@@ -12,7 +12,8 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .decorators import user_required,vendor_required,admin_required
 
-
+class IndexView(TemplateView):
+    template_name = 'user/index.html'
 class UserRegisterView(CreateView):
     model = User
     form_class = UserRegisterForm

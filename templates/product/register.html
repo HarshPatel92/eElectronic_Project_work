@@ -1,0 +1,84 @@
+
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="icon" href="{% static 'assets/img/favicon/favicon.png' %}" type="image/gif" />
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>E-electronics</title>
+   <!-- plugins:css -->
+   <link rel="stylesheet" href="{% static 'assets/css/feather.css' %}">
+   <link rel="stylesheet" href="{% static 'assets/css/themify-icons.css' %}">
+   <link rel="stylesheet" href="{% static 'assets/css/vendor.bundle.base.css' %}">
+   <!-- endinject -->
+   <!-- Plugin css for this page -->
+   <link rel="stylesheet" href="{% static 'assets/css/dataTables.bootstrap4.css' %}">
+   <link rel="stylesheet" href="{% static 'assets/css/themify-icons.css' %}">
+   <link rel="stylesheet" type="text/css" href="{% static 'assets/css/select.dataTables.min.css' %}">
+   <!-- End plugin css for this page -->
+   <!-- inject:css -->
+   <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+   <!-- endinject -->
+   <link rel="icon" href="{% static 'assets/img/favicon/favicon.png' %}" type="image/gif" />
+   <!-- plugins:js -->
+   <script src="{% static 'assets/js/vendor.bundle.base.js' %}"></script>
+   <!-- endinject -->
+   <!-- Plugin js for this page -->
+   <script src="{% static 'assets/js/chart.js/Chart.min.js' %}"></script>
+   <script src="{% static 'assets/js/datatables.net/jquery.dataTables.js' %}"></script>
+   <script src="{% static 'assets/js/datatables.net-bs4/dataTables.bootstrap4.js' %}"></script>
+   <script src="{% static 'assets/js/dataTables.select.min.js' %}"></script>
+ 
+   <!-- End plugin js for this page -->
+   <!-- inject:js -->
+   <script src="{% static 'assets/js/off-canvas.js' %}"></script>
+   <script src="{% static 'assets/js/hoverable-collapse.js' %}"></script>
+   <script src="{% static 'assets/js/template.js' %}"></script>
+   <script src="{% static 'assets/js/settings.js' %}"></script>
+   <script src="{% static 'assets/js/todolist.js' %}"></script>
+   <!-- endinject -->
+   <!-- Custom js for this page-->
+   <script src="{% static 'assets/js/dashboard.js' %}"></script>
+   <script src="{% static 'assets/js/Chart.roundedBarCharts.js' %}"></script>
+   <!-- End custom js for this page-->
+</head>
+<body>
+  <div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+      <div class="content-wrapper d-flex align-items-center auth px-0">
+        <div class="row w-100 mx-0">
+          <div class="col-lg-4 mx-auto">
+            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+              <div class="brand-logo">
+                <img src="{% static 'logo.png' %}" alt="logo">
+              </div>
+              <h4>Hello! let's get started</h4>
+              <h6 class="font-weight-light">Choose your Role.</h6>
+              <div class="mt-3">
+                <a href="{% url 'userregister' %}"><button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">User</button></a>
+              </div>
+              <div class="mt-3">
+                <a href="{% url 'vendorregister' %}"><button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Vendor</button></a>
+              </div>
+              <div class="mt-3">
+                <a href="{% url 'adminregister' %}"><button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Admin</button></a>
+              </div>
+              <div class="text-center mt-4 font-weight-light">
+                Already have an account? <a href="{% url 'login' %}" class="text-primary">Login</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+</body>
+</html>
+{% endblock content %}

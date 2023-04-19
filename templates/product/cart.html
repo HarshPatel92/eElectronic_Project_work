@@ -1,0 +1,64 @@
+{% extends './Base.html' %}{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+</head>
+<body>
+    
+
+  <h1>Cart</h1>
+  {% if cart_details %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Subtotal</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for detail in cart_details %}
+          <tr>
+            <td>{{ detail.product.product_name }}</td>
+            <td>{{ detail.price }}</td>
+            <td>
+              <form method="POST" action="{% url 'cart:remove_from_cart' detail.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-danger">-</button>
+              </form>
+              {{ detail.quantity }}
+              <form method="POST" action="{% url 'cart:add_to_cart' detail.product.id %}">
+                {% csrf_token %}
+                <input type="number" name="quantity" value="1" min="1">
+                <button type="submit" class="btn btn-sm btn-success">+</button>
+              </form>
+            </td>
+            <td>{{ detail.subtotal }}</td>
+            <td>
+              <form method="POST" action="{% url 'cart:remove_from_cart' detail.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+        <tr>
+          <td colspan="3"><strong>Total:</strong></td>
+          <td><strong>{{ cart.total }}</strong></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  {% else %}
+    <p>Your cart is empty.</p>
+  {% endif %}
+{% endblock %}
+</body>
+</html>
