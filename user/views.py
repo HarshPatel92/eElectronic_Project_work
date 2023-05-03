@@ -1,16 +1,19 @@
 from django.shortcuts import render,redirect
 from django.views.generic.edit import CreateView
 from .models import User
-from .forms import UserRegisterForm,VendorRegisterForm,AdminRegisterForm,UserProfileForm
+from .forms import UserRegisterForm,VendorRegisterForm,AdminRegisterForm,UserProfileForm,ContactForm
 from django.contrib.auth import login
 from django.contrib.auth.views import LoginView,LogoutView
 from django.urls import reverse_lazy
 from django.contrib import messages
-from django.views.generic import ListView,TemplateView
+from django.views.generic import ListView,TemplateView,FormView
 from product.models import Product
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .decorators import user_required,vendor_required,admin_required
+from django.core.mail import send_mail
+from django.conf import settings
+
 
 class IndexView(TemplateView):
     template_name = 'user/index.html'
@@ -25,8 +28,13 @@ class UserRegisterView(CreateView):
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):
-        #email = form.cleaned_data.get('email')
+        email = form.cleaned_data.get('email')
         user = form.save()
+        recipient_list = [email]
+        subject = "welcome to E-electronics Website"
+        message = "Say hello to Django!! You are User now !! Now you can purchase electronics items from website according to your requirement."
+        email_from = settings.EMAIL_HOST_USER
+        send_mail(subject, message, email_from, recipient_list)
         login(self.request,user)
         return super().form_valid(form)
     
@@ -41,8 +49,13 @@ class VendorRegisterView(CreateView):
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):
-        #email = form.cleaned_data.get('email')
+        email = form.cleaned_data.get('email')
         user = form.save()
+        recipient_list = [email]
+        subject = "welcome to E-electronics Website"
+        message = "Say hello to Django!! You are Vendor now"
+        email_from = settings.EMAIL_HOST_USER
+        send_mail(subject, message, email_from, recipient_list)
         login(self.request,user)
         return super().form_valid(form)
     
@@ -57,8 +70,13 @@ class AdminRegisterView(CreateView):
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):
-        #email = form.cleaned_data.get('email')
+        email = form.cleaned_data.get('email')
         user = form.save()
+        recipient_list = [email]
+        subject = "welcome to E-electronics Website"
+        message = "Say hello to Django!! You are Admin now"
+        email_from = settings.EMAIL_HOST_USER
+        send_mail(subject, message, email_from, recipient_list)
         login(self.request,user)
         return super().form_valid(form)
     
@@ -139,7 +157,26 @@ class UserProfileView(CreateView):
     
     
     
-    
+class ContactView(FormView):
+    template_name = 'user/contactus.html'
+    form_class = ContactForm
+    success_url = reverse_lazy('contactsuccess')
+
+    def form_valid(self, form):
+        name = form.cleaned_data.get('name', '')
+        email = form.cleaned_data.get('email', '')
+        message = form.cleaned_data.get('message', '')
+
+        # Send email to site owner
+        send_mail(
+            'New message from Contact Us form',
+            f'Name: {name}\nEmail: {email}\nMessage: {message}',
+            email, # From email address
+            [settings.EMAIL_HOST_USER], # To email address
+            fail_silently=False,
+        )
+
+        return super().form_valid(form) 
 
     
     

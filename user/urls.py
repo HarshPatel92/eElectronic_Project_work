@@ -13,5 +13,7 @@ urlpatterns = [
     path('user/dashboard/',UserDashboardView.as_view(),name='user_dashboard'),
     path('userprofile/',UserProfileView.as_view(),name='userprofile'),
     path('register/',TemplateView.as_view(template_name='product/register.html'),name='register'),
-    path('about/',TemplateView.as_view(template_name='about.html'),name='about')
+    path('aboutus/',TemplateView.as_view(template_name='user/aboutus.html'),name='aboutus'),
+    path('contactus/',ContactView.as_view(),name='contactus'),
+    path('contactus/success/',TemplateView.as_view(template_name='user/contact_success.html'),name='contactsuccess')
 ]

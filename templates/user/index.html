@@ -54,7 +54,7 @@
                   </div>
                   <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                        <div class="top-box">
-                        <p>long established fact that a reader will be </p>
+                        {% comment %} <p>long established fact that a reader will be </p> {% endcomment %}
                     </div>
                   </div>
                </div>
@@ -74,10 +74,9 @@
                      <div class="limit-box">
                         <nav class="main-menu">
                            <ul class="menu-area-main">
-                              <li class="active"> <a href="index.html">Home</a> </li>
-                              <li> <a href="{% url 'about' %}">About</a> </li>
-                              <li> <a href="product.html">product</a> </li>
-                              <li> <a href="contact.html">Contact</a> </li>
+                              <li class="active"> <a href="{% url 'home' %}">Home</a> </li>
+                              <li> <a href="{% url 'aboutus' %}">About Us</a> </li>
+                              <li> <a href="{% url 'contactus' %}">Contact Us</a> </li>
                               <li class="mean-last"> <a href="{% url 'register' %}">Sign Up</a> 
                                  {% comment %} <select name="rec-type" id="rec-type">
                                     <!-- <a href="{% url 'transactions' rec_type='expense' %}"> -->
@@ -112,8 +111,8 @@
                      <div class="carousel-caption relative">
                         <h1>Our <br> <strong class="black_bold">Latest </strong><br>
                            <strong class="yellow_bold">Product </strong></h1>
-                        <p>It is a long established fact that a r <br>
-                          eader will be distracted by the readable content of a page </p>
+                        {% comment %} <p>It is a long established fact that a r <br>
+                          eader will be distracted by the readable content of a page </p> {% endcomment %}
                         <a  href="#">see more Products</a>
                      </div>
                   </div>
@@ -177,28 +176,28 @@
             <div class="row">
                <dir class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="for_box">
-                     <i><img src="icon/1.png"/></i>
+                     <i><img src="{% static 'home/icon/1.png'%}"/></i>
                      <h3>Home appliences</h3>
                      <p>Perspiciatis eos quos totam cum minima autPerspiciatis eos quos</p>
                   </div>
                </dir>
                <dir class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="for_box">
-                     <i><img src="icon/2.png"/></i>
+                     <i><img src="{% static 'home/icon/2.png'%}"/></i>
                      <h3>Delivery service</h3>
                      <p>Perspiciatis eos quos totam cum minima autPerspiciatis eos quos</p>
                   </div>
                </dir>
                <dir class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="for_box">
-                     <i><img src="icon/3.png"/></i>
+                     <i><img src="{% static 'home/icon/3.png'%}"/></i>
                      <h3>Mobile service</h3>
                      <p>Perspiciatis eos quos totam cum minima autPerspiciatis eos quos</p>
                   </div>
                </dir>
                <dir class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="for_box">
-                     <i><img src="icon/4.png"/></i>
+                     <i><img src="{% static 'home/icon/4.png'%}"/></i>
                      <h3>Network solutions</h3>
                      <p>Perspiciatis eos quos totam cum minima autPerspiciatis eos quos</p>
                   </div>
@@ -226,44 +225,44 @@
             <div class="row">
                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                   <div class="service-box">
-                     <i><img src="icon/service1.png"/></i>
+                     <i><img src="{% static 'home/icon/service1.png'%}"/></i>
                      <h3>Fast service</h3>
-                     <p>Exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea </p>
+                     <p>We Provide you best Sevice for products </p>
                   </div>
                </div>
                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                   <div class="service-box">
-                     <i><img src="icon/service2.png"/></i>
+                     <i><img src="{% static 'home/icon/service2.png'%}"/></i>
                      <h3>Secure payments</h3>
-                     <p>Exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea </p>
+                     <p> </p>
                   </div>
                </div>
                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                   <div class="service-box">
-                     <i><img src="icon/service3.png"/></i>
+                     <i><img src="{% static 'home/icon/service3.png'%}"/></i>
                      <h3>Expert team</h3>
-                     <p>Exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea </p>
+                     <p>we have expert team that will help you for anything </p>
                   </div>
                </div>
                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                   <div class="service-box">
-                     <i><img src="icon/service4.png"/></i>
+                     <i><img src="{% static 'home/icon/service4.png'%}"/></i>
                      <h3>Affordable services</h3>
-                     <p>Exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea </p>
+                     <p>We Provide you best afforadable services that will help you in better way </p>
                   </div>
                </div>
                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                   <div class="service-box">
-                     <i><img src="icon/service5.png"/></i>
+                     <i><img src="{% static 'home/icon/service5.png'%}"/></i>
                      <h3>90 Days warranty</h3>
-                     <p>Exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea </p>
+                     <p></p>
                   </div>
                </div>
                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                   <div class="service-box">
-                     <i><img src="icon/service6.png"/></i>
+                     <i><img src="{% static 'home/icon/service6.png'%}"/></i>
                      <h3>Award winning</h3>
-                     <p>Exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea </p>
+                     <p></p>
                   </div>
                </div>
             </div>
@@ -284,6 +283,7 @@
             </div>
          </div>
       </div>
+      
       <div class="product-bg">
          <div class="product-bg-white">
          <div class="container">
@@ -367,7 +367,7 @@
             <div class="container">
               <div class="carousel-caption text-bg">
                <div class="img_bg">
-                  <i><img src="{%static 'assets/img/lllll.png' %}"/><span>Jone Due<br><strong class="date">12/02/2019</strong></span></i>
+                  <i><img src="{% static 'home/images/face.png'%}"/><span>Jone Due<br><strong class="date">12/02/2019</strong></span></i>
                   
                </div>
                 
@@ -381,7 +381,7 @@
             <div class="container">
               <div class="carousel-caption text-bg">
                 <div class="img_bg">
-                  <i><img src="images/lllll.png"/><span>Jone Due<br><strong class="date">12/02/2019</strong></span></i>
+                  <i><img src="{% static 'home/images/face.png'%}"/><span>Jone Due<br><strong class="date">12/02/2019</strong></span></i>
                   
                </div>
                 <p>You guys rock! Thank you for making it painless, pleasant and most of all hassle free! I wish I would have thought of it first. I am really satisfied with my first laptop service.<br>
@@ -394,7 +394,7 @@
             <div class="container">
               <div class="carousel-caption text-bg">
                  <div class="img_bg">
-                  <i><img src="images/lllll.png"/><span>Jone Due<br><strong class="date">12/02/2019</strong></span></i>
+                  <i><img src="{% static 'home/images/face.png'%}"/><span>Jone Due<br><strong class="date">12/02/2019</strong></span></i>
                   
                </div>
                 <p>You guys rock! Thank you for making it painless, pleasant and most of all hassle free! I wish I would have thought of it first. I am really satisfied with my first laptop service.<br>
@@ -460,18 +460,18 @@
                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="contact">
                      <h3>conatct us</h3>
-                     <span>Aavo Taar Mehsana..!</span>
+                     <span></span>
                   </div>
                </div>
                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="contact">
                      <h3>ADDITIONAL LINKS</h3>
                      <ul class="lik">
-                         <li> <a href="#">About us</a></li>
+                         <li> <a href="{% url 'aboutus' %}">About us</a></li>
                          <li> <a href="#">Terms and conditions</a></li>
                          <li> <a href="#">Privacy policy</a></li>
                          <li> <a href="#">News</a></li>
-                          <li> <a href="#">Contact us</a></li>
+                          <li> <a href="{% url 'contactus' %}">Contact us</a></li>
                      </ul>
                   </div>
                </div>
@@ -488,14 +488,16 @@
                </div>
                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="contact">
-                     <h3>About E - Store</h3>
-                     <span>Tincidunt elit magnis nulla facilisis. Dolor Sapien nunc amet ultrices, </span>
+                     <h3>About E - Electronics</h3>
+                     <span>This is Eccomerce website where user can buy only Electronics product. </span>
                   </div>
                </div>
             </div>
          </div>
             <div class="copyright">
-               <p>Copyright 2023 All Right Reserved By <a href="https://html.design/">Free html Templates</a></p>
+               <p>Copyright 2023 All Right Reserved By 
+                  {% comment %} <a href="https://html.design/">Free html Templates</a> {% endcomment %}
+               </p>
             </div>
          
       </div>

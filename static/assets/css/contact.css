@@ -1,0 +1,112 @@
+form {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #45b6cf;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #12a5d1;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #71c3e6;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+  
+  input[type="submit"] {
+    background-color: #165055;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #165055;
+  }
+
+ 
+/* contact success css here */
+
+/* Center the card horizontally and vertically */
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.card {
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+}
+
+.card-header {
+  background-color: #70abe5;
+  border-bottom: none;
+  border-radius: 0.5rem 0.5rem 0 0;
+  font-weight: bold;
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+/* Center the paragraphs vertically */
+.card-body p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+/* Style the first paragraph differently */
+.card-body p:first-of-type {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Style the link in the first paragraph */
+.card-body p:first-of-type a {
+  color: #73acea;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.card-body p:first-of-type a:hover {
+  text-decoration: underline;
+}
+
+/* Add a hover effect to the card */
+.card:hover {
+  transform: translateY(-0.1rem);
+  box-shadow: 0px 0px 10px 0px rgba(199, 88, 88, 0.3);
+}
+
+p {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+#countdown {
+  font-size: 36px;
+  font-weight: bold;
+  color: #F44336;
+  margin-left: 5px;
+}

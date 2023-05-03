@@ -32,7 +32,7 @@
    <script src="{% static 'assets/js/datatables.net/jquery.dataTables.js' %}"></script>
    <script src="{% static 'assets/js/datatables.net-bs4/dataTables.bootstrap4.js' %}"></script>
    <script src="{% static 'assets/js/dataTables.select.min.js' %}"></script>
- 
+
    <!-- End plugin js for this page -->
    <!-- inject:js -->
    <script src="{% static 'assets/js/off-canvas.js' %}"></script>
@@ -64,9 +64,9 @@
               <div class="mt-3">
                 <a href="{% url 'vendorregister' %}"><button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Vendor</button></a>
               </div>
-              <div class="mt-3">
+              {% comment %} <div class="mt-3">
                 <a href="{% url 'adminregister' %}"><button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Admin</button></a>
-              </div>
+              </div> {% endcomment %}
               <div class="text-center mt-4 font-weight-light">
                 Already have an account? <a href="{% url 'login' %}" class="text-primary">Login</a>
               </div>

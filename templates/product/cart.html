@@ -12,48 +12,50 @@
     
 
   <h1>Cart</h1>
-  {% if cart_details %}
+  {% if cart_detail_list %}
     <table class="table">
       <thead>
         <tr>
           <th>Product</th>
           <th>Price</th>
           <th>Quantity</th>
-          <th>Subtotal</th>
-          <th></th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        {% for detail in cart_details %}
+        <form method="POST" src="multipart/formdata">
+          {% csrf_token %}
+        {% for detail in cart_detail_list %}
           <tr>
             <td>{{ detail.product.product_name }}</td>
-            <td>{{ detail.price }}</td>
+            <td>{{ detail.product.price }}</td>
             <td>
-              <form method="POST" action="{% url 'cart:remove_from_cart' detail.id %}">
-                {% csrf_token %}
+              
+              <a href="{% url 'removefromcart' detail.product.pk %}">
                 <button type="submit" class="btn btn-sm btn-danger">-</button>
-              </form>
+              </a>
               {{ detail.quantity }}
-              <form method="POST" action="{% url 'cart:add_to_cart' detail.product.id %}">
-                {% csrf_token %}
-                <input type="number" name="quantity" value="1" min="1">
+              <a href="{% url 'addtocart' detail.product.pk %}">
                 <button type="submit" class="btn btn-sm btn-success">+</button>
-              </form>
+              </a>
             </td>
-            <td>{{ detail.subtotal }}</td>
             <td>
-              <form method="POST" action="{% url 'cart:remove_from_cart' detail.id %}">
-                {% csrf_token %}
+              <a href="{% url 'removefromcart' detail.product.pk %}">
                 <button type="submit" class="btn btn-sm btn-danger">Remove</button>
-              </form>
+              </a>
+              
             </td>
           </tr>
         {% endfor %}
         <tr>
           <td colspan="3"><strong>Total:</strong></td>
-          <td><strong>{{ cart.total }}</strong></td>
+          <td><strong>{{ cart.total }}</strong>   <a href="#">
+            <button type="submit" class="btn btn-sm btn-primary">Order Now</button>
+          </a></td>
           <td></td>
         </tr>
+        
+      </form>
       </tbody>
     </table>
   {% else %}
