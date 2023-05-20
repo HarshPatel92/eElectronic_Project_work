@@ -1,12 +1,12 @@
 from django.shortcuts import render,redirect
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView,UpdateView
 from .models import User
 from .forms import UserRegisterForm,VendorRegisterForm,AdminRegisterForm,UserProfileForm,ContactForm
 from django.contrib.auth import login
 from django.contrib.auth.views import LoginView,LogoutView
 from django.urls import reverse_lazy
 from django.contrib import messages
-from django.views.generic import ListView,TemplateView,FormView
+from django.views.generic import ListView,TemplateView,FormView,DetailView
 from product.models import Product
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -137,25 +137,48 @@ class UserDashboardView(TemplateView):
         context['products'] = products
         return context
     
+
 class UserProfileView(CreateView):
     model = User
     form_class = UserProfileForm
     template_name = 'user/user_profile.html'
     
+    def get_initial(self):
+        initial = super().get_initial()
+        initial.update({
+            'first_name': self.request.user.first_name,
+            'last_name': self.request.user.last_name,
+            'email': self.request.user.email,
+            'age': self.request.user.age,
+            'profile_pic': self.request.user.profile_pic,
+        })
+        return initial
+    
     def form_valid(self, form):
+        form.instance.user = self.request.user
         return super().form_valid(form)
     
     def get_redirect_url(self):
-        if self.request.user.is_authenticated:
-            if self.request.user.is_user:
-                return 'user/user/dashboard'
-            elif self.request.user.is_vendor:
-                return 'user/vendor/dashboard'
-            else:
-                return 'user/admin/dashboard'
-    
-    
-    
+      if self.request.user.is_authenticated:
+        if self.request.user.is_user:
+            return 'user/user/dashboard/'
+        elif self.request.user.is_vendor:
+            return 'user/vendor/dashboard/'
+        else:
+            return 'user/admin/dashboard/'
+        
+class UserProfileUpdateView(UpdateView):
+    model = User
+    form_class = UserProfileForm
+    template_name = 'user/user_profile_update.html'
+    success_url = reverse_lazy('user_profile')
+
+    def get_object(self):
+        return self.request.user
+
+    def get_success_url(self):
+        return reverse_lazy('user_profile', kwargs={'pk': self.object.pk})
+
     
 class ContactView(FormView):
     template_name = 'user/contactus.html'

@@ -20,6 +20,7 @@
     {% csrf_token %}
     <h5>Products</h5>
     <a href="{% url 'cart' %}" class="card-link"><button type="button" class="btn rounded-pill btn-success">View Cart</button></a>
+    {% comment %} <a href="{% url 'order_list' %}" class="card-link"><button type="button" class="btn rounded-pill btn-success">order history</button></a> {% endcomment %}
     <div class="container py-5">
     <div class="row mb-5">
     {% for product in products %}
@@ -35,7 +36,7 @@
                 {% endif %}
                 <p class="card-text">Price:- {{product.price}}</p>
                 <a href="{% url 'addtocart' product.id %}" class="card-link"><button type="button" class="btn rounded-pill btn-primary">ADD TO CART</button></a>
-                <a href="#" class="card-link"><button type="button" class="btn rounded-pill btn-dark">SHOP NOW</button></a>
+                <a href="{% url 'order' %}" class="card-link"><button type="button" class="btn rounded-pill btn-dark">ORDER NOW</button></a>
               </div>
               </div>
             </div>

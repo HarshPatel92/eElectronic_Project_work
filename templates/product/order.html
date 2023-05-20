@@ -1,4 +1,4 @@
-{% extends './Base.html' %}{% load static %}
+{% extends './Base.html' %}{% load static %} {% load crispy_forms_tags %} {% load crispy_forms_filters %}{% load crispy_forms_field %}{% load  %}
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +11,7 @@
 <body>
     
 
-  <h1>Cart</h1>
+  <h1>Checkout</h1>
   {% if cart_detail_list %}
     <table class="table">
       <thead>
@@ -19,32 +19,18 @@
           <th>Product</th>
           <th>Price</th>
           <th>Quantity</th>
-          <th>Action</th>
+          
         </tr>
       </thead>
       <tbody>
-        <form method="GET" src="multipart/formdata" action="{% url 'order' %}">
+        <form method="GET" src="multipart/formdata">
         {% csrf_token %}
-        {% comment %} <a href="{% url 'order_create' %}" class="btn btn-primary">Place Order</a> {% endcomment %}
         {% for detail in cart_detail_list %}
           <tr>
             <td>{{ detail.product.product_name }}</td>
             <td>{{ detail.price }}</td>
             <td>
-              
-              <a href="{% url 'removefromcart' detail.product.pk %}">
-                <button type="button" class="btn btn-sm btn-danger" onclick="windows.location.href='{% url 'removefromcart' detail.product.pk %}'">-</button>
-              </a>
-              {{ detail.quantity }}
-              <a href="{% url 'addtocart' detail.product.pk %}">
-                <button type="button" class="btn btn-sm btn-success" onclick="windows.location.href='{% url 'addtocart' detail.product.pk %}'">+</button>
-              </a>
-            </td>
-            <td>
-              <a href="{% url 'removefromcart' detail.product.pk %}">
-                <button type="button" class="btn btn-sm btn-danger">Remove</button>
-              </a>
-              
+              X  {{ detail.quantity }}
             </td>
           </tr>
         {% endfor %}
@@ -60,14 +46,27 @@
           </a></td> {% endcomment %}
           <td></td>
         </tr>
-        
-        <button type ='submit' value='submit'>Checkout</button>
-        {% comment %} <a href="{% url 'order_create' %}"><button type ="button">Place Order</button></a> {% endcomment %}
+   
       </form>
+      
       </tbody>
     </table>
+
+    <form method="POST" action="{% url 'checkoutsuccess' %}">
+      <label for="fname" class="form-label">First name:</label>
+      <input type="text" class="form-control" id="fname" name="fname"><br>
+      <label for="lname" class="form-label">Last name:</label>
+      <input type="text" class="form-control" id="lname" name="lname"><br>
+      <label for="CO" class="form-label">Contact No:</label>
+      <input type="text" class="form-control" id="CO" name="CO"><br>
+      <label for="Email" class="form-label">Email No:</label>
+      <input type="text" class="form-control" id="Email" name="Email"><br>
+      <label for="Address" class="form-label">Address:</label>
+      <input type="text" class="form-control" id="Address" name="Address"><br>
+      <input type="submit" value="Checkout" class="btn btn-primary" >
+    </form>
   {% else %}
-    <p>Your cart is empty.</p>
+    <p>Your order is not confirm yet</p>
   {% endif %}
 {% endblock %}
 </body>

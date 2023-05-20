@@ -97,7 +97,6 @@ class AddToCartView(View):
             cart = Cart.objects.get(user=user)
         except Cart.DoesNotExist:
             cart = Cart.objects.create(user=user)
-        
         try:
             cart_detail = Cart_detail.objects.get(cart=cart, product=product)
             cart_detail.quantity += 1
@@ -105,9 +104,9 @@ class AddToCartView(View):
             cart_detail.save()
         except Cart_detail.DoesNotExist:
             cart_detail = Cart_detail.objects.create(cart=cart, product=product, quantity=1, price=product.price)
-        
-        messages.info(request, product.product_name + ' added to cart successfully!')
+        messages.info(request, product.product_name + ' Added into cart successfully!')
         return redirect('cart')
+        
 
 
 class RemoveFromCartView(View):
@@ -125,4 +124,79 @@ class RemoveFromCartView(View):
         messages.info(request, product.product_name + ' removed from cart successfully!')
         return redirect('cart')
 
+    
+class OrderView(ListView):
+    model = Cart_detail
+    template_name = 'product/order.html'
 
+    def get_queryset(self):
+        user = self.request.user
+        try:
+            cart = Cart.objects.get(user=user)
+        except Cart.DoesNotExist:
+            return Cart_detail.objects.none()
+        return cart.cart_detail_set.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        try:
+            cart = Cart.objects.get(user=user)
+        except Cart.DoesNotExist:
+            cart = None
+        total = 0
+        if cart:
+            for cart_detail in cart.cart_detail_set.all():
+                total += cart_detail.price
+        context['total'] = total
+        return context
+    
+# class Checkout_success_view(TemplateView):
+#     template_name= 'product/checkout_success.html'
+
+
+class OrderCreateView(View):
+    def get(self, request):
+        user = request.user
+        cart = Cart.objects.get(user=user)
+        cart_items = cart.cart_detail_set.all()
+
+        if not cart_items:
+            messages.error(request, 'Your cart is empty.')
+            return redirect('cart')
+
+        address = Customer_address.objects.filter(user=user).first()
+
+        if not address:
+            messages.error(request, 'Please add a valid address for delivery.')
+            return redirect('cart')
+
+        order = Order.objects.create(user=user, total=0, status=Status.objects.get(status='Available'), address=address)
+        total_price = 0
+
+        for item in cart_items:
+            Order_detail.objects.create(
+                order=order,
+                user=user,
+                quantity=item.quantity,
+                price=item.price,
+                product=item.product
+            )
+            total_price += item.price
+
+        order.total = total_price
+        order.save()
+
+        cart_items.delete()
+        messages.success(request, 'Order placed successfully. Thank you for your purchase!')
+        return redirect('order_list')
+
+
+class OrderListView(ListView):
+    model = Order
+    template_name = 'product/order_list.html'
+    context_object_name = 'orders'
+
+    def get_queryset(self):
+        user = self.request.user
+        return Order.objects.filter(user=user)

@@ -117,6 +117,7 @@ class Cart_detail(models.Model):
     quantity = models.PositiveIntegerField()
     price = models.FloatField()
     
+    
     class Meta:
         db_table = 'cart_detail'
   

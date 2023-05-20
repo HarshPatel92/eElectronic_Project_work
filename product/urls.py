@@ -10,4 +10,11 @@ urlpatterns = [
     path('cart/addtocart/<int:pk>', AddToCartView.as_view(), name='addtocart'),
     path('cart/removefromcart/<int:pk>', RemoveFromCartView.as_view(), name='removefromcart'),
     path('cart/', CartView.as_view(), name='cart'),
+    path('order/', OrderView.as_view(),name='order'),
+    #path('checkoutsuccess/',Checkout_success_view.as_view(),name='checkoutsuccess').
+    path('checkoutsuccess/',TemplateView.as_view(template_name='product/checkout_success.html'),name='checkoutsuccess'),
+    
+    path('create-order/', OrderCreateView.as_view(), name='order_create'),
+    path('order-list/', OrderListView.as_view(), name='order_list'),
+    
 ]

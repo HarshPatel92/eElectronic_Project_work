@@ -1,0 +1,45 @@
+{% extends './Base.html' %}
+
+{% block content %}
+<html>
+    <head></head>
+    <body>
+    <form method="get">
+        {% csrf_token %}
+  <h1>My Orders</h1>
+  
+  {% if orders %}
+    <table>
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Total</th>
+          <th>Status</th>
+          <th>Address</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in orders %}
+          <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.total }}</td>
+            <td>{{ order.status.status }}</td>
+            <td>
+              {{ order.address.cust_address }},
+              {{ order.address.city }},
+              {{ order.address.state }},
+              {{ order.address.pincode }}
+            </td>
+            <td>{{ order.created_at|date:"F d, Y" }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No orders found.</p>
+  {% endif %}
+</form>
+</body>
+</html>
+{% endblock %}
